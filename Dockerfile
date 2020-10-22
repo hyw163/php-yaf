@@ -25,14 +25,28 @@ apt-get install -y --no-install-recommends \
     pecl install yaf-3.0.8 && \
     docker-php-ext-enable bcmath zip pdo_mysql mcrypt sockets yaf
 
-# install memcached
-RUN pecl install memcached
+# install memcached xdebug redis
+RUN pecl install memcached xdebug redis
 
-# install xdebug
-RUN pecl install xdebug
-
-# install redis
-RUN pecl install redis
+# install scws
+RUN curl 'http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2' -o scws-1.2.3.tar.bz2  \
+    && tar -xjf scws-1.2.3.tar.bz2  \
+    && rm scws-1.2.3.tar.bz2  \
+    && mv scws-1.2.3 /tmp  \
+    && cd /tmp/scws-1.2.3  \
+    && ./configure --prefix=/usr/local/scws  \
+    && make  \
+    && make install  \
+    && cd /usr/local/scws/etc \
+    && curl http://www.xunsearch.com/scws/down/scws-dict-chs-gbk.tar.bz2 \
+    && curl http://www.xunsearch.com/scws/down/scws-dict-chs-utf8.tar.bz2 \
+    && tar xvjf scws-dict-chs-gbk.tar.bz2 \
+    && tar xvjf scws-dict-chs-utf8.tar.bz2 \
+    && cd /tmp/scws-1.2.3/phpext \
+    && phpize \
+    && ./configure --with-scws=/usr/local/scws \
+    && make  \
+    && make install 
 
 # install composer
 RUN php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php && \
