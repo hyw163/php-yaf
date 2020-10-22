@@ -38,8 +38,8 @@ RUN curl 'http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2' -o scws-1.2.3.t
     && make  \
     && make install  \
     && cd /usr/local/scws/etc \
-    && curl http://www.xunsearch.com/scws/down/scws-dict-chs-gbk.tar.bz2 \
-    && curl http://www.xunsearch.com/scws/down/scws-dict-chs-utf8.tar.bz2 \
+    && curl 'http://www.xunsearch.com/scws/down/scws-dict-chs-gbk.tar.bz2' \
+    && curl 'http://www.xunsearch.com/scws/down/scws-dict-chs-utf8.tar.bz2' \
     && tar xvjf scws-dict-chs-gbk.tar.bz2 \
     && tar xvjf scws-dict-chs-utf8.tar.bz2 \
     && cd /tmp/scws-1.2.3/phpext \
