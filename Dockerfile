@@ -6,7 +6,9 @@ RUN apt-get clean -y
 RUN apt-get update && \
 apt-get install -y --no-install-recommends \
     curl \
+    wget \
     git \
+    bzip2 \
     mysql-client \
     libmemcached-dev \
     libz-dev \
@@ -22,6 +24,7 @@ apt-get install -y --no-install-recommends \
     libmcrypt-dev && \
     docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr && \
     docker-php-ext-install gd pdo_mysql mysqli opcache intl bcmath zip mcrypt sockets && \
+    pecl channel-update pecl.php.net && \
     pecl install yaf-3.0.8 && \
     docker-php-ext-enable bcmath zip pdo_mysql mcrypt sockets yaf
 
@@ -29,7 +32,7 @@ apt-get install -y --no-install-recommends \
 RUN pecl install memcached xdebug redis
 
 # install scws
-RUN curl 'http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2' -o scws-1.2.3.tar.bz2  \
+RUN wget http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2  \
     && tar -xjf scws-1.2.3.tar.bz2  \
     && rm scws-1.2.3.tar.bz2  \
     && mv scws-1.2.3 /tmp  \
@@ -38,8 +41,8 @@ RUN curl 'http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2' -o scws-1.2.3.t
     && make  \
     && make install  \
     && cd /usr/local/scws/etc \
-    && curl 'http://www.xunsearch.com/scws/down/scws-dict-chs-gbk.tar.bz2' \
-    && curl 'http://www.xunsearch.com/scws/down/scws-dict-chs-utf8.tar.bz2' \
+    && wget http://www.xunsearch.com/scws/down/scws-dict-chs-gbk.tar.bz2 \
+    && wget http://www.xunsearch.com/scws/down/scws-dict-chs-utf8.tar.bz2 \
     && tar xvjf scws-dict-chs-gbk.tar.bz2 \
     && tar xvjf scws-dict-chs-utf8.tar.bz2 \
     && cd /tmp/scws-1.2.3/phpext \
