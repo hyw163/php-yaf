@@ -23,10 +23,10 @@ apt-get install -y --no-install-recommends \
     zlib1g-dev \
     libmcrypt-dev && \
     docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr && \
-    docker-php-ext-install gd pdo_mysql pdo_pgsql mysqli opcache intl bcmath zip mcrypt sockets && \
+    docker-php-ext-install gd pdo_mysql pgsql pdo_pgsql mysqli opcache intl bcmath zip mcrypt sockets && \
     pecl channel-update pecl.php.net && \
     pecl install yaf-3.0.8 && \
-    docker-php-ext-enable bcmath zip pdo_mysql pdo_pgsql mcrypt sockets yaf
+    docker-php-ext-enable bcmath zip pdo_mysql pgsql pdo_pgsql mcrypt sockets yaf
 
 # install memcached xdebug redis
 RUN pecl install memcached xdebug redis
