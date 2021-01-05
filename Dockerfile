@@ -22,7 +22,7 @@ apt-get install -y --no-install-recommends \
     libmemcached-dev \
     zlib1g-dev \
     libmcrypt-dev && \
-    docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr && \
+    docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr --with-freetype-dir=/usr && \
     docker-php-ext-install gd pdo_mysql pgsql pdo_pgsql mysqli opcache intl bcmath zip mcrypt sockets && \
     pecl channel-update pecl.php.net && \
     pecl install yaf-3.0.8 && \
