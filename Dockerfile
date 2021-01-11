@@ -37,7 +37,7 @@ tar zxvf yaf-3.0.7.tgz && \
 rm yaf-3.0.7.tgz && \
 mv yaf-3.0.7 /tmp && \
 cd /tmp/yaf-3.0.7 && \
-/usr/local/php/bin/phpize/ && \
+phpize && \
 ./configure --prefix=/usr/local/php/bin/php-config && \
 make && make install
 
