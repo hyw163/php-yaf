@@ -31,6 +31,9 @@ apt-get install -y --no-install-recommends \
 # install memcached xdebug redis
 RUN pecl install memcached xdebug redis
 
+# install xdebug
+RUN pecl install xdebug 
+
 # install scws
 RUN wget http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2  \
     && tar -xjf scws-1.2.3.tar.bz2  \
