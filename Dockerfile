@@ -35,7 +35,7 @@ RUN pecl install xdebug
 RUN wget https://pecl.php.net/get/yaf-3.0.7.tgz && \
 tar zxvf yaf-3.0.7.tgz && \
 rm yaf-3.0.7.tgz && \
-mv /yaf-3.0.7 /tmp && \
+mv yaf-3.0.7 /tmp && \
 cd /tmp/yaf-3.0.7 && \
 /usr/local/php/bin/phpize/ && \
 ./configure --prefix=/usr/local/php/bin/php-config && \
