@@ -33,10 +33,10 @@ RUN pecl install xdebug
 
 # install yaf
 RUN wget https://pecl.php.net/get/yaf-3.0.7.tgz && \
-tar -xjf yaf-3.0.8.tar.gz && \
-rm yaf-3.0.8.tar.gz && \
-mv /yaf-3.0.8 /tmp && \
-cd /tmp/yaf-3.0.8 && \
+tar -xjf yaf-3.0.7.tgz && \
+rm yaf-3.0.7.tgz && \
+mv /yaf-3.0.7 /tmp && \
+cd /tmp/yaf-3.0.7 && \
 /usr/local/php/bin/phpize/ && \
 ./configure --prefix=/usr/local/php/bin/php-config && \
 make && make install
