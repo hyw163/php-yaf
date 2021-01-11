@@ -24,10 +24,11 @@ apt-get install -y --no-install-recommends \
     docker-php-ext-install gd pdo_mysql mysqli opcache intl bcmath zip sockets && \
     pecl channel-update pecl.php.net && \
     pecl install yaf-3.0.8 && \
+    pecl install mcrypt-1.0.3 && \
     docker-php-ext-enable bcmath zip pdo_mysql pgsql pdo_pgsql mcrypt sockets yaf
 
-# install memcached xdebug redis
-RUN pecl install memcached xdebug redis
+# install memcached redis
+RUN pecl install memcached redis
 
 # install xdebug
 RUN pecl install xdebug 
