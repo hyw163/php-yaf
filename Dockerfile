@@ -21,7 +21,7 @@ apt-get install -y --no-install-recommends \
     libmemcached-dev \
     zlib1g-dev && \
     docker-php-ext-configure gd --with-jpeg --with-freetype && \
-    docker-php-ext-install -j$(nproc) gd pdo_mysql mysqli opcache intl bcmath zip sockets && \
+    docker-php-ext-install -j$(nproc) gd pdo_mysql pgsql pdo_pgsql mysqli opcache intl bcmath zip sockets && \
     pecl channel-update pecl.php.net && \
     pecl install yaf-3.0.8 && \
     docker-php-ext-enable bcmath zip pdo_mysql pgsql pdo_pgsql sockets yaf
