@@ -1,26 +1,27 @@
-FROM php:7.3-fpm
+FROM php:7.4-fpm
 
-RUN apt-get clean -y
 # Install the PHP extensions we need
 
-RUN apt-get update && \
+RUN apt-get clean -y && \
+apt-get update && \
 apt-get install -y --no-install-recommends \
     curl \
     git \
-    mariadb-client \
+    mariadb-client-10.3 \
     libmemcached-dev \
     libz-dev \
     libzip-dev \
     libpq-dev \
-    libjpeg-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
     libpng-dev \
     libfreetype6-dev \
     libicu-dev \
     libssl-dev \
     libmemcached-dev \
     zlib1g-dev && \
-    docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr --with-freetype-dir=/usr && \
-    docker-php-ext-install gd pdo_mysql mysqli opcache intl bcmath zip sockets && \
+    docker-php-ext-configure gd --with-jpeg --with-freetype && \
+    docker-php-ext-install -j$(nproc) gd pdo_mysql mysqli opcache intl bcmath zip sockets && \
     pecl channel-update pecl.php.net && \
     pecl install yaf-3.0.8 && \
     docker-php-ext-enable bcmath zip pdo_mysql pgsql pdo_pgsql sockets yaf
