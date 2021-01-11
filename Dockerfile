@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:7.4-fpm 
 
 # Install the PHP extensions we need
 
@@ -22,15 +22,22 @@ apt-get install -y --no-install-recommends \
     zlib1g-dev && \
     docker-php-ext-configure gd --with-jpeg --with-freetype && \
     docker-php-ext-install -j$(nproc) gd pdo_mysql pgsql pdo_pgsql mysqli opcache intl bcmath zip sockets && \
-    pecl channel-update pecl.php.net && \
-    pecl install yaf-3.0.8 && \
-    docker-php-ext-enable bcmath zip pdo_mysql pgsql pdo_pgsql sockets yaf
+    docker-php-ext-enable bcmath zip pdo_mysql pgsql pdo_pgsql sockets
 
 # install memcached redis
 RUN pecl install memcached redis
 
 # install xdebug
 RUN pecl install xdebug 
+
+# install yaf
+RUN wget https://github.com/laruence/yaf/archive/yaf-3.0.8.tar.gz && \
+tar -zxvf yaf-3.0.8.tar.gz && \
+rm yaf-3.0.8.tar.gz && \
+cd yaf-3.0.8 && \
+/usr/local/php/bin/phpize/ && \
+./configure --prefix=/usr/local/php/bin/php-config && \
+make && make install
 
 # install scws
 RUN wget http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2  \
