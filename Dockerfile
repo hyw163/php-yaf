@@ -6,6 +6,7 @@ RUN apt-get clean -y && \
 apt-get update && \
 apt-get install -y --no-install-recommends \
     curl \
+    wget \
     git \
     mariadb-client-10.3 \
     libmemcached-dev \
