@@ -33,7 +33,7 @@ RUN pecl install xdebug
 
 # install yaf
 RUN wget https://github.com/laruence/yaf/archive/yaf-3.0.8.tar.gz && \
-tar -zxvf yaf-3.0.8.tar.gz && \
+tar -xjf yaf-3.0.8.tar.gz && \
 rm yaf-3.0.8.tar.gz && \
 mv /yaf-3.0.8 /tmp && \
 cd /tmp/yaf-3.0.8 && \
