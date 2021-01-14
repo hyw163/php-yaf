@@ -32,7 +32,7 @@ RUN pecl install memcached redis
 RUN pecl install xdebug 
 
 # install yaf
-RUN pecl install yaf && docker-php-ext-enable yaf
+RUN pecl install yaf-3.0.9 && docker-php-ext-enable yaf
 
 # install scws
 RUN wget http://www.xunsearch.com/scws/down/scws-1.2.3.tar.bz2  \
